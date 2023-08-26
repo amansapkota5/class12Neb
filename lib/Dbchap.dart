@@ -1,13 +1,13 @@
-
 import 'package:csit4thsemnotes/Dbdisplay.dart';
 import 'package:flutter/material.dart';
-import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
+import 'package:flutter_gradient_app_bar/flutter_gradient_app_bar.dart';
 
-class Passingdb{
+class Passingdb {
   String dbsubjects;
   String dbpdf;
-  Passingdb(this.dbsubjects,this.dbpdf);
+  Passingdb(this.dbsubjects, this.dbpdf);
 }
+
 class Dbchap extends StatefulWidget {
   const Dbchap({super.key});
 
@@ -16,7 +16,7 @@ class Dbchap extends StatefulWidget {
 }
 
 class _DbchapState extends State<Dbchap> {
-   static List dbchapters=[
+  static List dbchapters = [
     "Database and Database Users",
     "Database System Concepts and Architecture",
     "Data Modeling Using ER Model",
@@ -27,9 +27,8 @@ class _DbchapState extends State<Dbchap> {
     "Introduction to Transaction Processing Concepts and Theory",
     "Concurrency Control Techniques",
     "Database Recovery Techniques"
-
   ];
-  static List<dynamic> dbdescriptions=[
+  static List<dynamic> dbdescriptions = [
     "assets/Dbunit1.pdf",
     "assets/Dbunit2.pdf",
     "assets/Dbunit3.pdf",
@@ -40,61 +39,54 @@ class _DbchapState extends State<Dbchap> {
     "assets/Dbunit8.pdf",
     "assets/Dbunit9.pdf",
     "assets/Dbunit10.pdf",
-
-
   ];
-  var topic=List.generate(dbchapters
-  .length, (index) => Passingdb(dbchapters[index],dbdescriptions[index]));
+  var topic = List.generate(dbchapters.length,
+      (index) => Passingdb(dbchapters[index], dbdescriptions[index]));
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      appBar: NewGradientAppBar(
-        centerTitle: true,
-         gradient: LinearGradient(
-        
-        colors: [
-        Colors.black,
-        Colors.black
-  
-       ]),
-      title: Text("DBMS CHAPTERS ",style: TextStyle(fontWeight: FontWeight.normal,fontSize: 17),),
-
-      ),
-      body: ListView.builder(
-          itemCount: dbchapters.length,
-          itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5.0),
-            child: Padding(
-              padding: const EdgeInsets.only(top: 10.0),
-              child: InkWell(
-                onTap: () {
-                  setState(() {
-                    Navigator.push(context,MaterialPageRoute(builder: (context)=>Dbdisplay(value:topic[index])));
-                
-                  });
-                },
-                child: Container(
-                  width: 80,
-                  height: 45,
-                  child: Center(
-                      child: Text(
-                    topic[index].dbsubjects,
-                    style: TextStyle(color: Colors.white, fontSize: 16),
-                  )),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [Colors.black, Colors.black]),
-                    borderRadius: BorderRadius.circular(3.0),
+        appBar: GradientAppBar(
+          centerTitle: true,
+          gradient: LinearGradient(colors: [Colors.black, Colors.black]),
+          title: Text(
+            "DBMS CHAPTERS ",
+            style: TextStyle(fontWeight: FontWeight.normal, fontSize: 17),
+          ),
+        ),
+        body: ListView.builder(
+            itemCount: dbchapters.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: InkWell(
+                    onTap: () {
+                      setState(() {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    Dbdisplay(value: topic[index])));
+                      });
+                    },
+                    child: Container(
+                      width: 80,
+                      height: 45,
+                      child: Center(
+                          child: Text(
+                        topic[index].dbsubjects,
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      )),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            colors: [Colors.black, Colors.black]),
+                        borderRadius: BorderRadius.circular(3.0),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
-          );
-        })
-    
-      
-
-    );
+              );
+            }));
   }
 }
